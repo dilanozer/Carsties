@@ -19,6 +19,7 @@ namespace SearchService.Controllers
                 query.Match(Search.Full, searchParams.SearchTerm).SortByTextScore();
             }
 
+            // ordering
             query = searchParams.OrderBy switch 
             {
                 "make" => query.Sort(x => x.Ascending(a => a.Make)),
@@ -26,6 +27,7 @@ namespace SearchService.Controllers
                 _ => query.Sort(x => x.Ascending(a => a.AuctionEnd))
             };
 
+            // filtering
             query = searchParams.FilterBy switch 
             {
                 "finished" => query.Match(x => x.AuctionEnd < DateTime.UtcNow),

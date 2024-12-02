@@ -30,6 +30,6 @@ namespace SearchService.Data
             Console.WriteLine(items.Count + " returned from the auction service");
 
             if (items.Count > 0) await DB.SaveAsync(items);
-        }
+        } 
     }
 }
