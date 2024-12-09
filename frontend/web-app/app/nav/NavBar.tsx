@@ -1,9 +1,12 @@
 import React from "react";
 import Search from "./Search";
 import Logo from "./Logo";
+import LoginButton from "./LoginButton";
+import { getCurrentUser } from "../actions/authActions";
+import UserActions from "./UserActions";
 
-export default function NavBar() {
-  console.log("Client component");
+export default async function NavBar() {
+  const user = await getCurrentUser();
   return (
     <header
       className="
@@ -11,7 +14,11 @@ export default function NavBar() {
       ">
       <Logo />
       <Search />
-      <div>Login</div>
+      {user ? (
+        <UserActions user={user}/>
+      ) : (
+        <LoginButton />
+      )}
     </header>
   );
 }
