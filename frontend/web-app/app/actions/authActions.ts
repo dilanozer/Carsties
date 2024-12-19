@@ -1,6 +1,6 @@
-'use server'
+'use server';
 
-import { auth } from "@/auth"
+import { auth } from "@/auth";
 
 export async function getCurrentUser() {
     try {
@@ -9,7 +9,7 @@ export async function getCurrentUser() {
         if (!session) return null;
 
         return session.user;
-    } catch (error) {
+    } catch {
         return null;
     }
 }

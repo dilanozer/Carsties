@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { auth } from '@/auth';
-const baseUrl = 'http://localhost:6001/';
+const baseUrl = process.env.API_URL;
 
 async function get(url: string) {
     const requestOptions = {
@@ -12,22 +12,22 @@ async function get(url: string) {
     return handleResponse(response);
 }
 
-async function post(url: string, body: {}) {
+async function post(url: string, body: object) {
     const requestOptions = {
         method: 'POST',
         headers: await getHeaders(),
         body: JSON.stringify(body)
-    }
+    };
     const response = await fetch(baseUrl + url, requestOptions);
     return handleResponse(response);
 }
 
-async function put(url: string, body: {}) {
+async function put(url: string, body: object) {
     const requestOptions = {
         method: 'PUT',
         headers: await getHeaders(),
         body: JSON.stringify(body)
-    }
+    };
     const response = await fetch(baseUrl + url, requestOptions);
     return handleResponse(response);
 }

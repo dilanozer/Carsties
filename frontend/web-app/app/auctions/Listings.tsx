@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import AuctionCard from "./AuctionCard";
 import AppPagination from "../components/AppPagination";
@@ -43,7 +42,7 @@ export default function Listings() {
       setData(data);
       setLoading(false);
     });
-  }, [url]);
+  }, [url, setData]);
 
   if (loading) return <h3>Loading...</h3>;
 

@@ -45,7 +45,13 @@ const filterButtons = [
     icon: BsStopwatchFill,
     value: "finished",
   },
+  {
+    label: "Paused Auctions", 
+    icon: BsStopwatch,
+    value: "paused",
+  },
 ];
+
 
 export default function Filters() {
   const pageSize = useParamsStore((state) => state.pageSize);

@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   logging: {
     fetches: {
       fullUrl: true
@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {protocol: 'https', hostname: 'cdn.pixabay.com'}
     ]
-  }
+  },
+  output: 'standalone'
 };
 
 export default nextConfig;
