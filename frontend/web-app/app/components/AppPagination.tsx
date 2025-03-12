@@ -15,7 +15,7 @@ export default function AppPagination({ currentPage, pageCount, pageChanged }: P
       currentPage={currentPage}
       onPageChange={e => pageChanged(e)}
       totalPages={pageCount}
-      layout="pagination"
+      layout="table"
       showIcons={true}
       className="text-blue-500 mb-5"
     />
