@@ -7,19 +7,21 @@ import DetailedSpecs from "./DetailedSpecs";
 import { getCurrentUser } from "@/app/actions/authActions";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import BidItem from "./BidItem";
 import BidList from "./BidList";
 
-export default async function Details({ params }: { params: { id: string } }) {
-  if (!params?.id) {
+export default async function Details({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+
+  if (!resolvedParams?.id) {
     throw new Error("ID parametresi eksik!");
   }
 
-  const data = await getDetailedViewData(params.id);
+  const data = await getDetailedViewData(resolvedParams.id);
   const user = await getCurrentUser();
 
   return (
     <div>
+      {/* Render içeriği */}
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <Heading title={`${data.make} ${data.model}`} />
@@ -40,7 +42,6 @@ export default async function Details({ params }: { params: { id: string } }) {
         <div className="w-full bg-gray-200 relative aspect-[4/3] rounded-lg overflow-hidden h-80">
           <CarImage imageUrl={data.imageUrl} />
         </div>
-
         <BidList user={user} auction={data} />
       </div>
 
@@ -50,3 +51,4 @@ export default async function Details({ params }: { params: { id: string } }) {
     </div>
   );
 }
+
