@@ -11,7 +11,6 @@ export default function Search() {
   const pathname = usePathname();
   const setParams = useParamsStore(state => state.setParams);
   const setSearchValue = useParamsStore(state => state.setSearchValue);
-  // const searchTerm = useParamsStore(state => state.searchTerm);
   const searchValue = useParamsStore(state => state.searchValue);
 
   function onChange(event: any) {
@@ -24,26 +23,31 @@ export default function Search() {
   }
 
   return (
-    <div className="flex w-[50%] items-center border-2 rounded-full py-2 shadow-sm">
+    <div className="flex w-1/2 items-center border-2 rounded-full py-2 shadow-sm">
       <input
-        onKeyDown={(e: any) => {
-            if (e.key === 'Enter') search();
-        }}
-        value={searchValue}
         onChange={onChange}
+        onKeyDown={(e: any) => {
+          if (e.key === 'Enter') search();
+        }}
         type="text"
+        value={searchValue}
         placeholder="Search for cars by make, model or color"
-        className="
-                input-custom
-                text-sm
-                text-gray-600
-            "
+        className='
+          input-custom
+          text-sm
+          text-gray-600
+          border-none
+          focus:outline-none
+          bg-transparent
+          border-0
+        '
+        style={{ border: 'none !important', outline: 'none !important' }}
       />
-      <button >
+      <button className="ml-auto">
         <FaSearch
           size={34}
           onClick={search}
-          className="bg-red-400 text-white rounded-full p-2 cursor-pointer mx-2"
+          className="bg-red-500 text-white rounded-full p-2 cursor-pointer mx-2"
         />
       </button>
     </div>

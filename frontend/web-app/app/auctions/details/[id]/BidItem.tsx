@@ -17,7 +17,7 @@ export default function BidItem({bid}: Props) {
                 text = 'Bid accepted'
                 break;
             case 'AcceptedBelowReserve':
-                bgColor = 'bg-amber-500'
+                bgColor = 'bg-indigo-500'
                 text = 'Reserve not met'
                 break;
             case 'TooLow':

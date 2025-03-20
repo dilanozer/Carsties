@@ -17,7 +17,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }:
         flex justify-center
         ${completed 
           ? 'bg-red-600' : (days === 0 && hours < 10)
-          ? 'bg-amber-600' : 'bg-green-600'}
+          ? 'bg-indigo-600' : 'bg-green-600'}
         `}>
           {completed 
             ? (<span>Auction finished</span>) 

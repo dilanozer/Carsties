@@ -56,7 +56,7 @@ export default function BidList({ user, auction }: Props) {
   if (loading) return <span>Loading bids...</span>;
 
   return (
-    <div className="rounded-lg shadow-md">
+    <div className="rounded-lg shadow-md relative flex flex-col">
       <div className="py-2 px-4 bg-white">
         <div className="sticky top-0 bg-white p-2">
           <Heading
@@ -65,7 +65,9 @@ export default function BidList({ user, auction }: Props) {
         </div>
       </div>
 
-      <div className="overflow-y-auto h-[400px] flex flex-col-reverse px-2">
+      <div 
+        className="flex flex-col px-2 mx-2 pb-16"
+        style={{ height: '300px', overflowY: 'auto'}}>
         {bids.length === 0 ? (
           <EmptyFilter
             title="no bids for this item"
@@ -80,7 +82,7 @@ export default function BidList({ user, auction }: Props) {
         )}
       </div>
 
-      <div className="px-2 pb-2 text-gray-500">
+      <div className="px-2 pb-2 text-gray-500 absolute bottom-0 left-0 right-0 bg-white">
         {!open ? (
           <div className="flex items-center justify-center p-2 text-lg font-semibold">
             This auction has finished
