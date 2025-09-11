@@ -67,9 +67,9 @@ namespace AuctionService.Controllers
         {
             var auction = await _repo.GetAuctionEntityById(id);
 
-            if (auction == null) return NotFound(); // assert 3
+            if (auction == null) return NotFound(); 
 
-            if (auction.Seller != User.Identity.Name) return Forbid(); // assert 2
+            if (auction.Seller != User.Identity.Name) return Forbid();
 
             auction.Item.Make = updateAuctionDto.Make ?? auction.Item.Make;
             auction.Item.Model = updateAuctionDto.Model ?? auction.Item.Model;
@@ -77,11 +77,11 @@ namespace AuctionService.Controllers
             auction.Item.Mileage = updateAuctionDto.Mileage ?? auction.Item.Mileage;
             auction.Item.Year = updateAuctionDto.Year ?? auction.Item.Year;
 
-            await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction)); // arrange
+            await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
 
-            var result = await _repo.SaveChangesAsync(); // arrange
+            var result = await _repo.SaveChangesAsync(); 
 
-            if (result) return Ok(); // assert 1
+            if (result) return Ok(); 
 
             return BadRequest("Problem saving changes"); 
         }
@@ -90,21 +90,21 @@ namespace AuctionService.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAuction(Guid id)
         {
-            var auction = await _repo.GetAuctionEntityById(id); // arrange
+            var auction = await _repo.GetAuctionEntityById(id); 
 
-            if (auction == null) return NotFound(); // assert 2
+            if (auction == null) return NotFound();
 
-            if (auction.Seller != User.Identity.Name) return Forbid(); // assert 3
+            if (auction.Seller != User.Identity.Name) return Forbid(); 
 
             _repo.RemoveAuction(auction);
 
-            await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() }); // arrange
+            await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() }); 
 
-            var result = await _repo.SaveChangesAsync(); // arrange
+            var result = await _repo.SaveChangesAsync(); 
 
             if (!result) return BadRequest("Could not update DB");
  
-            return Ok(); // assert 1
+            return Ok(); 
         }
     }
 }
